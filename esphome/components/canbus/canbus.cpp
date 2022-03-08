@@ -4,7 +4,7 @@
 namespace esphome {
 namespace canbus {
 
-static const char *TAG = "canbus";
+static const char *const TAG = "canbus";
 
 void Canbus::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Canbus...");
@@ -75,7 +75,7 @@ void Canbus::loop() {
     }
 
     // fire all triggers
-    for (auto trigger : this->triggers_) {
+    for (auto *trigger : this->triggers_) {
       if ((trigger->can_id_ == can_message.can_id) && (trigger->use_extended_id_ == can_message.use_extended_id)) {
         trigger->trigger(data);
       }
